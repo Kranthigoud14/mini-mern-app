@@ -2,6 +2,8 @@ import { useForm } from 'react-hook-form'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react';
 import axios from 'axios';
+import { API_URL } from '../apiConfig';
+
 function EditEmployee() {
   const {
     register,
@@ -28,8 +30,8 @@ function EditEmployee() {
       console.log(modifiedEmp)
       //make HTTP PUT req
       try {
-        const apiUrl = import.meta.env.VITE_API_URL || "https://mini-mern-app-3.onrender.com";
-        const res = await axios.put(`${apiUrl}/employee-api/employees/${state._id}`, modifiedEmp);
+        const res = await axios.put(`${API_URL}/employee-api/employees/${state._id}`, modifiedEmp);
+
         if (res.status === 200) {
           navigate('/list');
         } else {

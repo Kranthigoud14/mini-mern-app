@@ -19,16 +19,21 @@ const port = process.env.PORT || 4000;
 const mongoUrl = process.env.DB_URL || "mongodb://127.0.0.1:27017/employeeDB";
 
 async function connectDB(){
+    if (!process.env.DB_URL) {
+        console.warn("WARNING: DB_URL is not set. Defaulting to local MongoDB. This will likely fail in production.");
+    }
     try{
         await connect(mongoUrl);
-        console.log("database connection successful");
+        console.log("Database connection successful to:", mongoUrl.split('@').pop()); // Log only the host part for security
 
         // start server only after successful DB connection
-        app.listen(port, () => console.log(`server running on port ${port}..`));
+        app.listen(port, () => console.log(`Server running on port ${port}..`));
     }
     catch(err)
     {
-        console.error("err in DB connection :", err);
+        console.error("CRITICAL: Database connection failed!");
+        console.error("Error details:", err.message);
+        console.error("Full connection string attempted:", mongoUrl.replace(/:([^:@]{4})[^:@]*@/, ':****@')); // Mask password if present
         process.exit(1);
     }
 }

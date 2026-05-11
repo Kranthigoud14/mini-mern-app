@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "../apiConfig";
+
 
 function ListOfEmps() {
   const [emps, setEmps] = useState([]);
@@ -15,16 +17,16 @@ function ListOfEmps() {
   };
 
   const deleteEmpById = async (id) => {
-    const apiUrl = import.meta.env.VITE_API_URL || "https://mini-mern-app-3.onrender.com";
-    let res = await axios.delete(`${apiUrl}/employee-api/employees/${id}`);
+    let res = await axios.delete(`${API_URL}/employee-api/employees/${id}`);
+
     if (res.status === 200) {
       getEmps(); 
     }
   };
 
   const getEmps = async () => {
-    const apiUrl = import.meta.env.VITE_API_URL || "https://mini-mern-app-3.onrender.com";
-    let res = await axios.get(`${apiUrl}/employee-api/employees`);
+    let res = await axios.get(`${API_URL}/employee-api/employees`);
+
     if (res.status === 200) {
       let resObj = res.data;
       setEmps(resObj.payload);
