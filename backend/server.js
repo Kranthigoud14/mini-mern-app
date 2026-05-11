@@ -8,7 +8,7 @@ const app=exp()
 
 // Allow ALL origins temporarily to rule out CORS issues 100%
 app.use(cors({
-    origin: "*"
+    origin:["https://mini-mern-app-hb8c.vercel.app"],
 }))
 app.use(exp.json());
 
