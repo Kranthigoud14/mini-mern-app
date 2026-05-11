@@ -6,15 +6,15 @@ import 'dotenv/config'
 
 const app=exp()
 
-// Allow the Vercel URL specifically for CORS
+// Allow ALL origins temporarily to rule out CORS issues 100%
 app.use(cors({
-    origin: ["https://mini-mern-app.vercel.app", "http://localhost:5173", "http://localhost:5174", process.env.FRONTEND_URL].filter(Boolean)
+    origin: "*"
 }))
 app.use(exp.json());
 
 // Root route to check if backend is live
 app.get('/', (req, res) => {
-    res.send("Backend is Live and Running!");
+    res.send("Backend is Live and Running! If you see this, connectivity is good.");
 });
 
 //forward req to userApp if path starts with /user-api
