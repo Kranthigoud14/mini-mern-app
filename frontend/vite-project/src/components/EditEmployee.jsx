@@ -28,7 +28,7 @@ function EditEmployee() {
       console.log(modifiedEmp)
       //make HTTP PUT req
       try {
-        const res = await axios.put(`http://localhost:4000/employee-api/employees/${state._id}`, modifiedEmp);
+        const res = await axios.put(`https://mini-mern-app-3.onrender.com/employee-api/employees/${state._id}`, modifiedEmp);
         if (res.status === 200) {
           navigate('/list');
         } else {
