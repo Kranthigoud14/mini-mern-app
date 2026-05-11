@@ -15,14 +15,14 @@ function ListOfEmps() {
   };
 
   const deleteEmpById = async (id) => {
-    let res = await axios.delete(`http://localhost:4000/employee-api/employees/${id}`);
+    let res = await axios.delete(`https://mini-mern-app-3.onrender.com/employee-api/employees/${id}`);
     if (res.status === 200) {
       getEmps(); 
     }
   };
 
   const getEmps = async () => {
-    let res = await axios.get("http://localhost:4000/employee-api/employees");
+    let res = await axios.get("https://mini-mern-app-3.onrender.com/employee-api/employees");
     if (res.status === 200) {
       let resObj = res.data;
       setEmps(resObj.payload);
