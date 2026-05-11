@@ -28,7 +28,8 @@ function EditEmployee() {
       console.log(modifiedEmp)
       //make HTTP PUT req
       try {
-        const res = await axios.put(`https://mini-mern-app-3.onrender.com/employee-api/employees/${state._id}`, modifiedEmp);
+        const apiUrl = import.meta.env.VITE_API_URL || "https://mini-mern-app-3.onrender.com";
+        const res = await axios.put(`${apiUrl}/employee-api/employees/${state._id}`, modifiedEmp);
         if (res.status === 200) {
           navigate('/list');
         } else {

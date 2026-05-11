@@ -15,14 +15,16 @@ function ListOfEmps() {
   };
 
   const deleteEmpById = async (id) => {
-    let res = await axios.delete(`https://mini-mern-app-3.onrender.com/employee-api/employees/${id}`);
+    const apiUrl = import.meta.env.VITE_API_URL || "https://mini-mern-app-3.onrender.com";
+    let res = await axios.delete(`${apiUrl}/employee-api/employees/${id}`);
     if (res.status === 200) {
       getEmps(); 
     }
   };
 
   const getEmps = async () => {
-    let res = await axios.get("https://mini-mern-app-3.onrender.com/employee-api/employees");
+    const apiUrl = import.meta.env.VITE_API_URL || "https://mini-mern-app-3.onrender.com";
+    let res = await axios.get(`${apiUrl}/employee-api/employees`);
     if (res.status === 200) {
       let resObj = res.data;
       setEmps(resObj.payload);

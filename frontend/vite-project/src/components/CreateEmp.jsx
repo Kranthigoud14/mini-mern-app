@@ -17,7 +17,8 @@ function CreateEmp() {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch("https://mini-mern-app-3.onrender.com/employee-api/employees", {
+      const apiUrl = import.meta.env.VITE_API_URL || "https://mini-mern-app-3.onrender.com";
+      const res = await fetch(`${apiUrl}/employee-api/employees`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

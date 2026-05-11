@@ -1,12 +1,15 @@
- import exp from 'express'
- import {connect} from 'mongoose'
-  import { employeeApp } from './API/Employeeapi.js';
+import exp from 'express'
+import {connect} from 'mongoose'
+import { employeeApp } from './API/Employeeapi.js';
 import cors from 'cors'
-//cross origin resource sharing 
+import 'dotenv/config'
+
 const app=exp()
 
+const frontendUrl = process.env.FRONTEND_URL || "http://localhost:5173";
+
 app.use(cors({
-    origin:["http://localhost:5173","http://localhost:5174"]
+    origin: [frontendUrl, "http://localhost:5173", "http://localhost:5174"]
 }))
 app.use(exp.json());
 //forward req to userApp if path starts with /user-api
